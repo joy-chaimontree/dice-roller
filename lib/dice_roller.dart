@@ -12,15 +12,15 @@ class DiceRoller extends StatefulWidget {
 }
 
 class _DiceRollerState extends State<DiceRoller> {
-  var activeDiceImage = 'assets/dice-1.png';
+  var activeDiceImage1 = 1;
+  var activeDiceImage2 = 6;
 
   void rollDice() {
-    //to generate random number//
-    var diceRoll = randomizer.nextInt(6) +1; // 1-6
     setState(() {
       //everytime click roll dice a new random is created and store in memory
       //the old random that was created will be thrown away//
-      activeDiceImage = 'assets/dice-$diceRoll.png';
+      activeDiceImage1 = randomizer.nextInt(6) + 1; // 1-6
+      activeDiceImage2 = randomizer.nextInt(6) + 1; // 1-6
     });
   }
 
@@ -29,7 +29,19 @@ class _DiceRollerState extends State<DiceRoller> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(activeDiceImage, height: 270),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/dice-$activeDiceImage1.png',
+              width: 150,
+            ),
+            Image.asset(
+              'assets/dice-$activeDiceImage2.png',
+              width: 150,
+            ),
+          ],
+        ),
         const SizedBox(
           height: 15,
         ),
